@@ -1,0 +1,366 @@
+<meta charset="utf-8">
+<title>Alta de negocio — Cerrajería en Vigo</title>
+<style>
+  :root {
+    --paper: #f2f4f6; --surface: #ffffff; --ink: #1c2836; --muted: #5c6c7d; --line: #d8dee5;
+    --brass: #a87a24; --brass-soft: #f3e9d4; --opp: #1f7a58; --opp-soft: rgba(31,122,88,.13);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #131a23; --surface: #1b2531; --ink: #e8ecf1; --muted: #96a5b4; --line: #2e3b4a;
+      --brass: #d2a44c; --brass-soft: #2c2716; --opp: #3fae82; --opp-soft: rgba(63,174,130,.16); }
+  }
+  :root[data-theme="light"] { --paper: #f2f4f6; --surface: #ffffff; --ink: #1c2836; --muted: #5c6c7d; --line: #d8dee5; --brass: #a87a24; --brass-soft: #f3e9d4; --opp: #1f7a58; --opp-soft: rgba(31,122,88,.13); }
+  :root[data-theme="dark"] { --paper: #131a23; --surface: #1b2531; --ink: #e8ecf1; --muted: #96a5b4; --line: #2e3b4a; --brass: #d2a44c; --brass-soft: #2c2716; --opp: #3fae82; --opp-soft: rgba(63,174,130,.16); }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: system-ui, "Segoe UI", sans-serif; font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 36px 18px 90px; }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(26px, 5vw, 36px); letter-spacing: -.015em; line-height: 1.15; margin: 8px 0 10px; text-wrap: balance; }
+  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--brass); margin: 0; }
+  .lede { color: var(--muted); font-size: 16px; margin: 0 0 6px; }
+  fieldset { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px 22px; margin: 22px 0 0; }
+  legend { font-family: Georgia, serif; font-size: 19px; font-weight: 700; padding: 2px 12px; background: var(--ink); color: var(--paper); border-radius: 8px; }
+  .hint { font-size: 13.5px; color: var(--muted); margin: 2px 0 14px; }
+  label { display: block; font-weight: 600; font-size: 14.5px; margin: 14px 0 4px; }
+  input[type="text"], input[type="tel"], input[type="email"], input[type="date"], textarea, select {
+    width: 100%; padding: 9px 12px; font: inherit; font-size: 15px; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--line); border-radius: 8px;
+  }
+  input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px solid var(--brass); outline-offset: 1px; }
+  textarea { min-height: 74px; resize: vertical; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+  @media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+  .svc { display: grid; grid-template-columns: auto 1fr 130px; gap: 10px; align-items: center; padding: 7px 0; border-bottom: 1px dashed var(--line); }
+  .svc:last-of-type { border-bottom: none; }
+  .svc input[type="checkbox"] { width: 19px; height: 19px; accent-color: var(--brass); }
+  .svc span { font-size: 14.5px; }
+  .svc input[type="text"] { padding: 6px 10px; font-size: 14px; }
+  .chks label { display: flex; align-items: center; gap: 9px; font-weight: 400; font-size: 14.5px; margin: 8px 0; }
+  .chks input { width: 18px; height: 18px; accent-color: var(--brass); flex: none; }
+  .radio-line { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 4px; }
+  .radio-line label { display: flex; align-items: center; gap: 6px; font-weight: 400; margin: 0; }
+  .radio-line input { accent-color: var(--brass); }
+  .fotos li { margin-bottom: 6px; font-size: 14.5px; }
+  .fotos li::marker { color: var(--brass); }
+  .actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+  button { font: inherit; font-weight: 700; border: none; border-radius: 10px; padding: 13px 22px; cursor: pointer; }
+  button:focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
+  #btn-gen { background: var(--opp); color: #fff; font-size: 16.5px; }
+  #btn-gen:hover { filter: brightness(1.08); }
+  #btn-gen:active { transform: translateY(1px); }
+  #btn-copy, #btn-wa { background: var(--surface); color: var(--ink); border: 1.5px solid var(--line); display: none; text-decoration: none; font-size: 15px; }
+  #btn-copy:hover, #btn-wa:hover { border-color: var(--brass); color: var(--brass); }
+  #btn-wa { align-items: center; padding: 13px 22px; }
+  #out { display: none; width: 100%; min-height: 300px; margin-top: 16px; font-family: ui-monospace, Consolas, monospace; font-size: 13px; }
+  .saved { font-size: 12.5px; color: var(--opp); margin-top: 8px; visibility: hidden; }
+  .note { background: var(--brass-soft); border-radius: 8px; padding: 10px 14px; font-size: 14px; margin-top: 12px; }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Chus Carvajal · SEO local · Vigo</p>
+  <h1>Alta de tu cerrajería en Google y web</h1>
+  <p class="lede">Con esto creamos tu ficha de Google (Maps), tu página web y tu estrategia local. Rellena lo que sepas — lo que no lo tengas claro, lo vemos juntos. Tus respuestas se van guardando solas en este navegador.</p>
+
+  <form id="f" autocomplete="on">
+
+    <fieldset>
+      <legend>1 · Datos básicos</legend>
+      <label for="q_nombre">Tu nombre completo</label>
+      <input type="text" id="q_nombre">
+      <label for="q_comercial">Nombre comercial del negocio, tal y como aparecerá en Google</label>
+      <input type="text" id="q_comercial" placeholder="p. ej. Cerrajería García">
+      <p class="hint">Debe ser el nombre real del negocio (el mismo del rótulo). Google suspende fichas que meten palabras clave de más en el nombre.</p>
+      <div class="row">
+        <div>
+          <label for="q_nif">NIF / NIE</label>
+          <input type="text" id="q_nif">
+        </div>
+        <div>
+          <label for="q_tel">Teléfono español del negocio</label>
+          <input type="tel" id="q_tel" placeholder="+34 ...">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="q_wa">¿Ese número tiene WhatsApp?</label>
+          <select id="q_wa"><option value=""></option><option>Sí</option><option>No</option><option>Lo tendrá</option></select>
+        </div>
+        <div>
+          <label for="q_email">Email del negocio</label>
+          <input type="email" id="q_email">
+        </div>
+      </div>
+      <label for="q_idiomas">Idiomas en los que atiendes (si además de español atiendes en inglés, es un plus para turistas y extranjeros)</label>
+      <input type="text" id="q_idiomas" placeholder="Español, inglés…">
+    </fieldset>
+
+    <fieldset>
+      <legend>2 · El local</legend>
+      <p class="hint">Dirección confirmada: <strong>Rúa Padre Sarmiento, 6 — 36204 Vigo</strong>. Si cambia algo, avísame.</p>
+      <label>¿Tendrá rótulo exterior con el nombre del negocio?</label>
+      <div class="radio-line">
+        <label><input type="radio" name="q_rotulo" value="Sí"> Sí</label>
+        <label><input type="radio" name="q_rotulo" value="En cuanto abra"> En cuanto abra</label>
+        <label><input type="radio" name="q_rotulo" value="No lo tenía previsto"> No lo tenía previsto</label>
+      </div>
+      <p class="hint">Imprescindible: Google verifica las fichas nuevas con un vídeo del local donde se vea el rótulo, la calle y las herramientas de trabajo.</p>
+      <div class="row">
+        <div>
+          <label for="q_apertura">Fecha prevista de apertura</label>
+          <input type="date" id="q_apertura">
+        </div>
+        <div>
+          <label for="q_horario">Horario de mostrador</label>
+          <input type="text" id="q_horario" placeholder="L-V 9:30-13:30 / 16:30-20:00, S 10-13">
+        </div>
+      </div>
+      <label>¿Urgencias 24 horas de verdad? (es decir: ¿coges el teléfono a las 4 de la mañana?)</label>
+      <div class="radio-line">
+        <label><input type="radio" name="q_24h" value="Sí, 24/7"> Sí, 24/7</label>
+        <label><input type="radio" name="q_24h" value="Solo hasta cierta hora"> Solo hasta cierta hora</label>
+        <label><input type="radio" name="q_24h" value="No"> No</label>
+      </div>
+      <p class="hint">«Cerrajero 24 horas Vigo» tiene 420 búsquedas al mes y la mitad de tu competencia figura cerrada de noche: si tu 24h es real, es tu mayor ventaja.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>3 · Servicios y precios</legend>
+      <p class="hint">Marca lo que haces y pon un precio orientativo «desde» si lo tienes. Publicar precios nos diferencia: «cuánto cuesta un cerrajero» tiene 480 búsquedas al mes y casi ningún competidor lo responde.</p>
+      <div class="svc"><input type="checkbox" id="s1"><span>Apertura de puertas (vivienda)</span><input type="text" id="s1p" placeholder="desde €"></div>
+      <div class="svc"><input type="checkbox" id="s2"><span>Cambio de bombín</span><input type="text" id="s2p" placeholder="desde €"></div>
+      <div class="svc"><input type="checkbox" id="s3"><span>Cambio de cerradura</span><input type="text" id="s3p" placeholder="desde €"></div>
+      <div class="svc"><input type="checkbox" id="s4"><span>Cerraduras antibumping / de seguridad</span><input type="text" id="s4p" placeholder="desde €"></div>
+      <div class="svc"><input type="checkbox" id="s5"><span>Apertura de coches</span><input type="text" id="s5p" placeholder="desde €"></div>
+      <div class="svc"><input type="checkbox" id="s6"><span>Copias de llaves</span><input type="text" id="s6p" placeholder="desde €"></div>
+      <div class="svc"><input type="checkbox" id="s7"><span>Llaves de coche y mandos</span><input type="text" id="s7p" placeholder="desde €"></div>
+      <div class="svc"><input type="checkbox" id="s8"><span>Cajas fuertes</span><input type="text" id="s8p" placeholder="desde €"></div>
+      <div class="svc"><input type="checkbox" id="s9"><span>Persianas y motorización</span><input type="text" id="s9p" placeholder="desde €"></div>
+      <div class="svc"><input type="checkbox" id="s10"><span>Puertas blindadas / acorazadas</span><input type="text" id="s10p" placeholder="desde €"></div>
+      <div class="svc"><input type="checkbox" id="s11"><span>Amaestramiento de llaves (comunidades)</span><input type="text" id="s11p" placeholder="desde €"></div>
+      <div class="svc"><input type="checkbox" id="s12"><span>Cerraduras inteligentes</span><input type="text" id="s12p" placeholder="desde €"></div>
+      <label for="q_otros_serv">Otros servicios</label>
+      <textarea id="q_otros_serv"></textarea>
+      <label for="q_urgencia_precio">Precio de salida de una urgencia nocturna (si lo tienes claro)</label>
+      <input type="text" id="q_urgencia_precio" placeholder="p. ej. desde 80 €">
+    </fieldset>
+
+    <fieldset>
+      <legend>4 · Zona de servicio</legend>
+      <label>¿Hasta dónde te desplazas para urgencias?</label>
+      <div class="chks">
+        <label><input type="checkbox" id="z1"> Todo Vigo</label>
+        <label><input type="checkbox" id="z2"> Mos / O Porriño</label>
+        <label><input type="checkbox" id="z3"> Redondela / Chapela</label>
+        <label><input type="checkbox" id="z4"> Nigrán / Gondomar / Baiona</label>
+        <label><input type="checkbox" id="z5"> Más lejos (indícalo en observaciones)</label>
+      </div>
+      <label for="q_respuesta">Tiempo de llegada que puedes prometer dentro de Vigo</label>
+      <input type="text" id="q_respuesta" placeholder="p. ej. 20-30 minutos">
+    </fieldset>
+
+    <fieldset>
+      <legend>5 · Tu historia</legend>
+      <p class="hint">Tu experiencia en Estados Unidos es un diferenciador enorme para la web — cuéntamela bien.</p>
+      <label for="q_anos">Años de experiencia como cerrajero</label>
+      <input type="text" id="q_anos">
+      <label for="q_usa">¿Dónde trabajaste en Estados Unidos y haciendo qué?</label>
+      <textarea id="q_usa" placeholder="Ciudad, empresa propia o empleado, tipo de trabajos…"></textarea>
+      <label for="q_certs">Certificaciones o licencias (de allí o de España)</label>
+      <textarea id="q_certs" placeholder="p. ej. certificación ALOA, licencia estatal…"></textarea>
+      <div class="row">
+        <div>
+          <label for="q_seguro">Seguro de responsabilidad civil en España</label>
+          <select id="q_seguro"><option value=""></option><option>Contratado</option><option>En trámite</option><option>Pendiente</option></select>
+        </div>
+        <div>
+          <label for="q_autonomo">Alta de autónomo / empresa</label>
+          <select id="q_autonomo"><option value=""></option><option>Hecha</option><option>En trámite</option><option>Pendiente</option></select>
+        </div>
+      </div>
+      <label for="q_garantia">Garantía que ofreces en tus trabajos</label>
+      <input type="text" id="q_garantia" placeholder="p. ej. 1 año en piezas y mano de obra">
+      <label for="q_reputacion">Reseñas o reputación online en Estados Unidos (enlaces: Google, Yelp…)</label>
+      <textarea id="q_reputacion"></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>6 · Marca y web</legend>
+      <div class="row">
+        <div>
+          <label for="q_logo">¿Tienes logo?</label>
+          <select id="q_logo"><option value=""></option><option>Sí, lo envío</option><option>No, hay que crearlo</option></select>
+        </div>
+        <div>
+          <label for="q_colores">Colores de marca preferidos</label>
+          <input type="text" id="q_colores">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="q_dominio">¿Tienes dominio web comprado? ¿Cuál?</label>
+          <input type="text" id="q_dominio" placeholder="p. ej. cerrajeria___vigo.es">
+        </div>
+        <div>
+          <label for="q_rrss">Redes sociales (las de aquí o las de allá)</label>
+          <input type="text" id="q_rrss" placeholder="Facebook, Instagram…">
+        </div>
+      </div>
+      <label for="q_eslogan">Si tuvieras que resumir tu negocio en una frase, ¿qué dirías?</label>
+      <textarea id="q_eslogan"></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>7 · Qué te hace diferente</legend>
+      <div class="chks">
+        <label><input type="checkbox" id="d1"> Precio cerrado por teléfono, sin sorpresas</label>
+        <label><input type="checkbox" id="d2"> Llegada en menos de 30 minutos</label>
+        <label><input type="checkbox" id="d3"> Atiendo también en inglés (turistas y extranjeros)</label>
+        <label><input type="checkbox" id="d4"> Pago con tarjeta y Bizum</label>
+        <label><input type="checkbox" id="d5"> Siempre con factura</label>
+        <label><input type="checkbox" id="d6"> Presupuesto gratis sin compromiso</label>
+        <label><input type="checkbox" id="d7"> Apertura sin romper la cerradura (ganzuado profesional)</label>
+      </div>
+      <label for="q_dif_otros">Otros</label>
+      <textarea id="q_dif_otros"></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>8 · Fotos que necesito</legend>
+      <p class="hint">Envíamelas por WhatsApp cuando las tengas — no hace falta que sean perfectas, las retoco yo.</p>
+      <ul class="fotos">
+        <li>Tu retrato con ropa de trabajo</li>
+        <li>Fachada del local con el rótulo</li>
+        <li>Interior del local / mostrador</li>
+        <li>Furgoneta (si está rotulada, mejor)</li>
+        <li>Herramientas y máquina de copias</li>
+        <li>3-5 trabajos hechos: antes y después</li>
+      </ul>
+      <label for="q_fotos_estado">¿Cuáles de estas puedes conseguir ya?</label>
+      <textarea id="q_fotos_estado"></textarea>
+    </fieldset>
+
+    <div class="note">🔒 Tus datos solo se usarán para crear tu ficha de Google, tu página web y los textos legales de la web.</div>
+
+    <div class="actions">
+      <button type="button" id="btn-gen">Generar resumen para enviar ✓</button>
+      <button type="button" id="btn-copy">Copiar</button>
+      <a id="btn-wa" href="https://wa.me/34671427811" target="_blank" rel="noopener">Enviar a Chus por WhatsApp →</a>
+    </div>
+    <p class="saved" id="saved">Guardado ✓</p>
+    <textarea id="out" readonly aria-label="Resumen generado"></textarea>
+  </form>
+</div>
+
+<script>
+(function () {
+  var LS = 'alta-cerrajeria-vigo';
+  var form = document.getElementById('f');
+  try {
+    var saved = JSON.parse(localStorage.getItem(LS) || '{}');
+    Object.keys(saved).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) {
+        var radios = document.getElementsByName(id);
+        for (var i = 0; i < radios.length; i++) if (radios[i].value === saved[id]) radios[i].checked = true;
+        return;
+      }
+      if (el.type === 'checkbox') el.checked = saved[id] === true;
+      else el.value = saved[id];
+    });
+  } catch (e) {}
+  var savedMsg = document.getElementById('saved');
+  var t;
+  form.addEventListener('input', function () {
+    var data = {};
+    form.querySelectorAll('input, textarea, select').forEach(function (el) {
+      if (el.type === 'radio') { if (el.checked) data[el.name] = el.value; return; }
+      if (el.type === 'checkbox') { data[el.id] = el.checked; return; }
+      if (el.id && el.id !== 'out') data[el.id] = el.value;
+    });
+    try { localStorage.setItem(LS, JSON.stringify(data)); } catch (e) {}
+    savedMsg.style.visibility = 'visible';
+    clearTimeout(t);
+    t = setTimeout(function () { savedMsg.style.visibility = 'hidden'; }, 1500);
+  });
+
+  function val(id) { var e = document.getElementById(id); return e ? e.value.trim() : ''; }
+  function radio(name) { var r = document.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
+  function chk(id) { var e = document.getElementById(id); return e && e.checked; }
+
+  var SVC = [
+    ['s1', 'Apertura de puertas'], ['s2', 'Cambio de bombín'], ['s3', 'Cambio de cerradura'],
+    ['s4', 'Antibumping / seguridad'], ['s5', 'Apertura de coches'], ['s6', 'Copias de llaves'],
+    ['s7', 'Llaves de coche y mandos'], ['s8', 'Cajas fuertes'], ['s9', 'Persianas'],
+    ['s10', 'Puertas blindadas/acorazadas'], ['s11', 'Amaestramiento'], ['s12', 'Cerraduras inteligentes']
+  ];
+  var ZONAS = [['z1', 'Todo Vigo'], ['z2', 'Mos / O Porriño'], ['z3', 'Redondela / Chapela'], ['z4', 'Nigrán / Gondomar / Baiona'], ['z5', 'Más lejos']];
+  var DIFS = [['d1', 'Precio cerrado por teléfono'], ['d2', 'Llegada <30 min'], ['d3', 'Atiende también en inglés'], ['d4', 'Tarjeta y Bizum'], ['d5', 'Siempre con factura'], ['d6', 'Presupuesto gratis'], ['d7', 'Apertura sin romper']];
+
+  document.getElementById('btn-gen').addEventListener('click', function () {
+    var L = [];
+    L.push('=== ALTA CERRAJERÍA VIGO — ' + (val('q_comercial') || 'sin nombre') + ' ===');
+    L.push('');
+    L.push('1) BÁSICOS');
+    L.push('Nombre: ' + val('q_nombre'));
+    L.push('Nombre comercial: ' + val('q_comercial'));
+    L.push('NIF/NIE: ' + val('q_nif'));
+    L.push('Teléfono: ' + val('q_tel') + '  · WhatsApp: ' + val('q_wa'));
+    L.push('Email: ' + val('q_email'));
+    L.push('Idiomas: ' + val('q_idiomas'));
+    L.push('');
+    L.push('2) LOCAL — Rúa Padre Sarmiento 6, 36204 Vigo');
+    L.push('Rótulo: ' + radio('q_rotulo'));
+    L.push('Apertura prevista: ' + val('q_apertura'));
+    L.push('Horario mostrador: ' + val('q_horario'));
+    L.push('Urgencias 24h: ' + radio('q_24h'));
+    L.push('');
+    L.push('3) SERVICIOS (precio desde)');
+    SVC.forEach(function (s) {
+      if (chk(s[0])) L.push('· ' + s[1] + (val(s[0] + 'p') ? ' — ' + val(s[0] + 'p') : ''));
+    });
+    if (val('q_otros_serv')) L.push('Otros: ' + val('q_otros_serv'));
+    if (val('q_urgencia_precio')) L.push('Urgencia nocturna: ' + val('q_urgencia_precio'));
+    L.push('');
+    L.push('4) ZONA DE SERVICIO');
+    L.push(ZONAS.filter(function (z) { return chk(z[0]); }).map(function (z) { return z[1]; }).join(', '));
+    L.push('Tiempo de llegada: ' + val('q_respuesta'));
+    L.push('');
+    L.push('5) HISTORIA');
+    L.push('Años de experiencia: ' + val('q_anos'));
+    L.push('En USA: ' + val('q_usa'));
+    L.push('Certificaciones: ' + val('q_certs'));
+    L.push('Seguro RC: ' + val('q_seguro') + '  · Autónomo: ' + val('q_autonomo'));
+    L.push('Garantía: ' + val('q_garantia'));
+    L.push('Reputación USA: ' + val('q_reputacion'));
+    L.push('');
+    L.push('6) MARCA Y WEB');
+    L.push('Logo: ' + val('q_logo') + '  · Colores: ' + val('q_colores'));
+    L.push('Dominio: ' + val('q_dominio'));
+    L.push('RRSS: ' + val('q_rrss'));
+    L.push('En una frase: ' + val('q_eslogan'));
+    L.push('');
+    L.push('7) DIFERENCIADORES');
+    L.push(DIFS.filter(function (d) { return chk(d[0]); }).map(function (d) { return d[1]; }).join(', '));
+    if (val('q_dif_otros')) L.push('Otros: ' + val('q_dif_otros'));
+    L.push('');
+    L.push('8) FOTOS que puede conseguir ya: ' + val('q_fotos_estado'));
+    var txt = L.join('\n');
+    var out = document.getElementById('out');
+    out.value = txt;
+    out.style.display = 'block';
+    document.getElementById('btn-copy').style.display = 'inline-block';
+    var wa = document.getElementById('btn-wa');
+    wa.style.display = 'inline-flex';
+    wa.href = 'https://wa.me/34671427811?text=' + encodeURIComponent(txt).slice(0, 6000);
+    out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  document.getElementById('btn-copy').addEventListener('click', function () {
+    var out = document.getElementById('out');
+    out.select();
+    try { navigator.clipboard.writeText(out.value); } catch (e) { document.execCommand('copy'); }
+    this.textContent = 'Copiado ✓';
+    var b = this;
+    setTimeout(function () { b.textContent = 'Copiar'; }, 1800);
+  });
+})();
+</script>
