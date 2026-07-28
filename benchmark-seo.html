@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benchmark SEO competitivo — Cerrajería La Clave de Vigo</title>
+<style>
+  :root {
+    --paper: #f4f2ef; --surface: #ffffff; --ink: #1b2530; --muted: #5d6b78; --line: #dcd8d2;
+    --brass: #9d7420; --brass-soft: #f2e9d6; --comp: #b8433a; --comp-soft: rgba(184,67,58,.1);
+    --opp: #1d6f52; --opp-soft: rgba(29,111,82,.12); --warn: #b07d17; --warn-soft: rgba(176,125,23,.13);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #12181f; --surface: #1a232d; --ink: #e9edf1; --muted: #98a6b3; --line: #2c3945;
+      --brass: #d5a648; --brass-soft: #2b2617; --comp: #e2705f; --comp-soft: rgba(226,112,95,.15);
+      --opp: #45b184; --opp-soft: rgba(69,177,132,.15); --warn: #d8a53a; --warn-soft: rgba(216,165,58,.15); }
+  }
+  :root[data-theme="light"] { --paper:#f4f2ef; --surface:#fff; --ink:#1b2530; --muted:#5d6b78; --line:#dcd8d2; --brass:#9d7420; --brass-soft:#f2e9d6; --comp:#b8433a; --comp-soft:rgba(184,67,58,.1); --opp:#1d6f52; --opp-soft:rgba(29,111,82,.12); --warn:#b07d17; --warn-soft:rgba(176,125,23,.13); }
+  :root[data-theme="dark"] { --paper:#12181f; --surface:#1a232d; --ink:#e9edf1; --muted:#98a6b3; --line:#2c3945; --brass:#d5a648; --brass-soft:#2b2617; --comp:#e2705f; --comp-soft:rgba(226,112,95,.15); --opp:#45b184; --opp-soft:rgba(69,177,132,.15); --warn:#d8a53a; --warn-soft:rgba(216,165,58,.15); }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:system-ui,"Segoe UI",sans-serif; font-size:16px; line-height:1.65; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 40px 20px 80px; }
+  h1,h2,h3,h4 { font-family: Georgia,"Times New Roman",serif; letter-spacing:-.015em; line-height:1.18; text-wrap:balance; }
+  h1 { font-size: clamp(28px,4.6vw,42px); margin:10px 0 12px; }
+  h2 { font-size:27px; margin:52px 0 6px; padding-top:14px; border-top:2px solid var(--line); }
+  h3 { font-size:20px; margin:26px 0 6px; }
+  h4 { font-size:16.5px; margin:18px 0 4px; }
+  .eyebrow { font-size:12px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--brass); margin:0; }
+  .lede { color:var(--muted); font-size:17px; max-width:70ch; margin:0 0 4px; }
+  p { max-width: 75ch; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:13px; margin:24px 0; }
+  .tile { background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:15px 17px 12px; }
+  .tile .big { font-family:Georgia,serif; font-size:30px; line-height:1.1; font-variant-numeric:tabular-nums; }
+  .tile .lbl { font-size:12.5px; color:var(--muted); margin-top:2px; }
+  .tile.good .big { color:var(--opp); } .tile.bad .big { color:var(--comp); } .tile.warn .big { color:var(--warn); }
+  .tablebox { overflow-x:auto; border:1px solid var(--line); border-radius:11px; background:var(--surface); margin:14px 0; }
+  table { border-collapse:collapse; width:100%; min-width:620px; font-size:14px; }
+  th { text-align:left; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:600; padding:10px 13px; border-bottom:1px solid var(--line); }
+  td { padding:8px 13px; border-bottom:1px solid var(--line); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.num, th.num { text-align:right; font-variant-numeric:tabular-nums; }
+  .yes { color:var(--opp); font-weight:700; } .no { color:var(--comp); font-weight:700; } .part { color:var(--warn); font-weight:700; }
+  .card { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:20px 24px; margin:16px 0; }
+  .card.win { border-left:4px solid var(--opp); }
+  .card.gap { border-left:4px solid var(--comp); }
+  .card.note { border-left:4px solid var(--brass); background:var(--brass-soft); }
+  ul,ol { max-width:75ch; } li { margin-bottom:7px; } li::marker { color:var(--brass); }
+  code { font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var(--brass-soft); padding:1px 5px; border-radius:4px; }
+  pre { background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:14px 16px; overflow-x:auto; font-size:13px; line-height:1.5; }
+  .pill { font-size:11px; font-weight:700; border-radius:99px; padding:2px 9px; white-space:nowrap; }
+  .pill.p1 { background:var(--comp-soft); color:var(--comp); }
+  .pill.p2 { background:var(--warn-soft); color:var(--warn); }
+  .pill.p3 { background:var(--opp-soft); color:var(--opp); }
+  .toc { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:18px 24px; margin:26px 0; column-count:2; column-gap:30px; font-size:14.5px; }
+  @media (max-width:640px){ .toc{column-count:1;} }
+  .toc a { color:var(--ink); text-decoration:none; display:block; padding:2px 0; }
+  .toc a:hover,.toc a:focus-visible { color:var(--brass); outline:none; }
+  .foot { color:var(--muted); font-size:13px; margin-top:44px; border-top:1px solid var(--line); padding-top:18px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="eyebrow">Benchmark SEO competitivo · 29 jul 2026</p>
+<h1>Cómo construir la web que gane en Vigo</h1>
+<p class="lede">Análisis de 13 webs que ya rankean en Google en seis mercados —Vigo, Pontevedra, Barcelona, España, París y Orlando— para extraer los patrones que funcionan y convertirlos en el plano de construcción de <strong>cerrajerialaclave.es</strong>.</p>
+
+<div class="card note">
+<strong>Punto de partida distinto al habitual:</strong> el proyecto todavía no tiene web. Eso es una ventaja — en lugar de corregir errores heredados, construimos directamente con los patrones ganadores. Este documento es el plano, no una auditoría.
+</div>
+
+<div class="toc">
+  <a href="#s1">1 · Diagnóstico del proyecto</a>
+  <a href="#s2">2 · Estratos y keywords</a>
+  <a href="#s3">3 · Competidores válidos</a>
+  <a href="#s4">4 · Análisis: los 6 de Vigo</a>
+  <a href="#s5">5 · Análisis por estrato</a>
+  <a href="#s6">6 · Patrones globales</a>
+  <a href="#s7">7 · Huecos y oportunidades</a>
+  <a href="#s8">8 · Estructura ideal de la home</a>
+  <a href="#s9">9 · Menú recomendado</a>
+  <a href="#s10">10 · Servicios a destacar</a>
+  <a href="#s11">11 · SEO on-page concreto</a>
+  <a href="#s12">12 · Arquitectura de URLs</a>
+  <a href="#s13">13 · Plan 30/60/90</a>
+  <a href="#s14">14 · Conclusión estratégica</a>
+</div>
+
+<h2 id="s1">1 · Diagnóstico del proyecto</h2>
+<p>Deducido de los archivos del proyecto (<code>cliente-victor-guerra.md</code>, <code>datos-cerrajeros-gbp.json</code>, <code>KW-VOLUMENES-DINORANK.md</code>, <code>kw-planner-vigo.json</code>).</p>
+<div class="tablebox"><table>
+<tr><th>Campo</th><th>Detectado</th></tr>
+<tr><td>Sector</td><td>Cerrajería · urgencias 24 h · servicio a domicilio (SAB parcial: local sin mostrador)</td></tr>
+<tr><td>País / idioma</td><td>España / español (con inglés como segundo idioma de atención)</td></tr>
+<tr><td>Ciudad objetivo</td><td>Vigo (Pontevedra, Galicia) — Rúa Padre Sarmiento 6, 36204</td></tr>
+<tr><td>Marca</td><td>Cerrajería La Clave de Vigo · dominio previsto cerrajerialaclave.es</td></tr>
+<tr><td>Servicios</td><td>Apertura de puertas · bombines · cerraduras · antibumping · <strong>apertura de coches</strong> · <strong>llaves de coche y mandos</strong> · cajas fuertes · amaestramiento · cerraduras inteligentes</td></tr>
+<tr><td>Intención de búsqueda</td><td>Transaccional urgente (llamada telefónica inmediata) + comercial informada (precio)</td></tr>
+<tr><td>Objetivo de conversión</td><td>Llamada · WhatsApp (secundario)</td></tr>
+<tr><td>Estructura web actual</td><td><span class="no">No existe</span> — proyecto en fase de construcción</td></tr>
+<tr><td>Activos diferenciales</td><td>Prolocksmith Orlando 4,7★ / 4.853 reseñas · 1.400 llaves de coche + 775 aperturas de vehículo · atención en inglés · 24/7 real · llegada 15 min · 1 año de garantía</td></tr>
+<tr><td>Debilidades de partida</td><td>0 reseñas locales · sin logo ni fotos · sin rótulo previsto · autónomo y seguro pendientes · ubicación con 23 rivales y 1.811 reseñas a &lt;2 km</td></tr>
+</table></div>
+
+<h2 id="s2">2 · Estratos y keywords de benchmark</h2>
+<div class="tablebox"><table>
+<tr><th>Estrato</th><th>Keyword</th><th>Mercado</th><th>Por qué este mercado</th></tr>
+<tr><td>Ciudad</td><td>cerrajeros vigo</td><td>google.es</td><td>Mercado objetivo directo (1.900 búsq./mes)</td></tr>
+<tr><td>Provincia</td><td>cerrajeros pontevedra</td><td>google.es</td><td>Expansión natural y patrón de páginas provinciales</td></tr>
+<tr><td>Ciudad competitiva</td><td>cerrajero barcelona</td><td>google.es</td><td>Mercado más agresivo de España en este nicho</td></tr>
+<tr><td>Nacional</td><td>cerrajero 24 horas</td><td>google.es</td><td>Head term sin ciudad: revela qué gana por intención pura</td></tr>
+<tr><td>Mismo continente</td><td>serrurier paris</td><td>google.fr</td><td>Mercado europeo maduro, con normativa de precios</td></tr>
+<tr><td>Otro continente</td><td>locksmith orlando</td><td>google.com</td><td><strong>Mercado donde trabajó el cliente</strong> — patrones directamente transferibles</td></tr>
+</table></div>
+
+<h2 id="s3">3 · Competidores válidos detectados</h2>
+<p>Descartados según reglas: anuncios, Google Maps, directorios (páxinasgalegas, habitissimo, milanuncios, páginas amarillas, HomeServe, Yelp, threebestrated), redes sociales y agregadores.</p>
+<div class="tablebox"><table>
+<tr><th>Estrato</th><th>#</th><th>Dominio</th><th>Tipo de página</th></tr>
+<tr><td rowspan="3">Vigo</td><td>1</td><td>cerrajeriaplacer.com</td><td>Home optimizada + blog masivo</td></tr>
+<tr><td>2</td><td>cerrajeriavarela.com</td><td>Home + red de páginas por zona</td></tr>
+<tr><td>3</td><td>cerrajeriamirandavigo.com</td><td>Home corporativa + catálogo</td></tr>
+<tr><td rowspan="3">Vigo (2ª línea)</td><td>4</td><td>cerrajerianovoa.es</td><td>Home orientada a dolor + blog de precios</td></tr>
+<tr><td>5</td><td>galicerrajerosvigo.eu</td><td>Home mono-página (SAB)</td></tr>
+<tr><td>6</td><td>cerrajeriaberma.es</td><td>Home + autocerrajería</td></tr>
+<tr><td>Barcelona</td><td>7-8</td><td>cerrajerosbarcelona.co · cerrajerosurgentes.barcelona</td><td>Landing de urgencia con precio en el título</td></tr>
+<tr><td>Nacional</td><td>9</td><td>cerrajerossandoval.es</td><td>Landing 24 h + nicho judicial</td></tr>
+<tr><td>París</td><td>10-11</td><td>serrurerie-paris.fr · serrurierparis24.fr</td><td>Home con tarifas públicas y sellos de marca</td></tr>
+<tr><td>Orlando</td><td>12-13</td><td>popalockorlando.com · allamericanlocksmithfl.com</td><td>Home con prueba social y certificaciones</td></tr>
+</table></div>
+
+<h2 id="s4">4 · Los seis de Vigo, cara a cara</h2>
+<div class="tablebox"><table>
+<tr><th>Web</th><th class="num">Palabras</th><th class="num">Imgs</th><th class="num">Alt</th><th>Schema</th><th>Tel</th><th>WA</th><th>FAQ</th><th>Reseñas</th><th>Precios</th></tr>
+<tr><td><strong>Placer</strong></td><td class="num">2.147</td><td class="num">77</td><td class="num">74</td><td>Organization + LocalBusiness</td><td class="yes">9</td><td class="yes">3</td><td class="no">No</td><td class="no">No</td><td class="part">Parcial</td></tr>
+<tr><td><strong>Novoa</strong></td><td class="num">1.454</td><td class="num">69</td><td class="no">9</td><td>Locksmith + FAQPage + LocalBusiness + Breadcrumb</td><td class="yes">8</td><td class="yes">3</td><td class="part">Schema sí</td><td class="yes">Sí</td><td class="yes">Sí (blog)</td></tr>
+<tr><td><strong>Miranda</strong></td><td class="num">1.561</td><td class="num">27</td><td class="num">27</td><td class="part">Solo FAQPage</td><td class="yes">9</td><td class="yes">6</td><td class="part">Schema sí</td><td class="no">No</td><td class="part">Parcial</td></tr>
+<tr><td><strong>Berma</strong></td><td class="num">1.018</td><td class="num">31</td><td class="num">23</td><td class="no">Ninguno</td><td class="yes">9</td><td class="no">0</td><td class="no">No</td><td class="no">No</td><td class="part">Parcial</td></tr>
+<tr><td><strong>Gali</strong></td><td class="num">1.058</td><td class="no">7</td><td class="no">3</td><td class="part">WebPage + Breadcrumb</td><td class="yes">5</td><td class="no">0</td><td class="no">No</td><td class="no">No</td><td class="part">Parcial</td></tr>
+<tr><td><strong>Varela</strong></td><td class="no">708</td><td class="num">16</td><td class="no">7</td><td class="part">WebPage + Organization</td><td class="yes">7</td><td class="no">0</td><td class="no">No</td><td class="no">No</td><td class="part">Parcial</td></tr>
+</table></div>
+
+<div class="card gap">
+<h3 style="margin-top:0">El hallazgo que decide la estrategia</h3>
+<p><strong>Ninguna de las seis webs de Vigo tiene una sección real de preguntas frecuentes visible, ni tabla de precios abierta, ni reseñas mostradas en portada.</strong> Novoa y Miranda declaran <code>FAQPage</code> en el schema pero no renderizan un bloque de FAQ que el usuario pueda leer. Las tres cosas son estándar en Barcelona, París y Orlando. Es el hueco más grande del mercado vigués.</p>
+</div>
+
+<h3>Ficha rápida de cada rival</h3>
+
+<h4>Cerrajería Placer — el gigante de contenido</h4>
+<p>Title: <em>«Cerrajería Placer - Cerrajeros 24 horas en Vigo»</em>. 77 imágenes con 74 alts (el mejor trabajo de imagen del mercado). Su arma es un <strong>menú de llaves de coche por marca</strong> (Alfa Romeo, Audi, BMW, Chevrolet, Citroën, Dacia, Fiat, Ford…) que le genera decenas de URLs de cola larga. H1 conversacional, no optimizado. <span class="pill p1">Amenaza alta</span> — pero su blog es genérico y no responde a precio local.</p>
+
+<h4>Cerrajería Novoa — el más sofisticado</h4>
+<p>El único con <code>Locksmith</code> + <code>LocalBusiness</code> + <code>FAQPage</code> + <code>Breadcrumb</code>, meta description con emoji ☎️ y teléfono, y H2 escritos <strong>desde el dolor del cliente</strong>: «Me he quedado fuera de casa», «Me preocupa que entren a robar», «Quiero tranquilidad para mi familia». Además tiene «Situaciones reales que hemos resuelto en Vigo» y proceso en 3 pasos. <span class="pill p1">Amenaza máxima</span> — es el modelo a batir en calidad, aunque solo 9 de 69 imágenes llevan alt.</p>
+
+<h4>Gali Cerrajeros — el rival directo de la zona</h4>
+<p>Posiciona 6º-8º con solo 7 imágenes, 1.058 palabras y un menú de dos entradas (Inicio, Contacto). <strong>Demuestra que en Vigo se entra al top-10 con muy poco</strong>: H2 repitiendo servicio + «en Vigo» y poco más. Es el techo bajo que confirma que una web bien hecha desbanca rápido.</p>
+
+<h4>Varela, Miranda y Berma</h4>
+<p>Varela ataca con <strong>páginas por municipio</strong> en el menú (Pontevedra, Marín, Poio, Porriño, Baiona, Ponteareas, Nigrán) y títulos con símbolos ⇒【】; solo 708 palabras en portada. Miranda vende 50 años de historia y catálogo de producto, con 6 enlaces de WhatsApp (el máximo del mercado). Berma no tiene <strong>ningún schema</strong> y su menú está roto (14 entradas «Back»), pero exhibe pertenencia a asociaciones del sector y punto Codillave.</p>
+
+<h2 id="s5">5 · Análisis por estrato</h2>
+
+<h3>Barcelona — el precio en el título</h3>
+<p>Los dos que rankean ponen <strong>la tarifa en el propio title</strong>: «Aperturas Desde 40 Euros*» y «Servicio Urgente desde 40€ | T. 659 437 665». Uno acumula 4.554 palabras con FAQ y schema <code>FAQPage</code>, y ambos despliegan páginas por municipio del área metropolitana (Badalona, Granollers, Mataró). Competencia muy alta y guerra de precios abierta.</p>
+
+<h3>Nacional — la especialización en nicho</h3>
+<p>Cerrajeros Sandoval (Valladolid) rankea para «cerrajero 24 horas» a nivel nacional con <strong>36 enlaces telefónicos</strong> en una sola página, FAQ, reseñas visibles y un servicio que nadie más ataca: <strong>«Lanzamiento por orden judicial»</strong> y «Comunidades de vecinos». Lección: un nicho B2B poco disputado puede traccionar más que pelear el genérico.</p>
+
+<h3>París — tarifas y sellos de fabricante</h3>
+<p>Ambos publican <strong>tabla de tarifas</strong> («Tarifs serrurier Paris») como sección propia, y Serrurerie Meunier construye autoridad con «Serrurier agréé Picard / Bricard / Anker / VAK» — una página por marca de cerradura homologada. Serrurier Paris 24 lleva FAQ + testimonios + «Intervention 30 min» en el title. Schema <code>Locksmith</code> en los dos.</p>
+
+<h3>Orlando — la prueba social como producto</h3>
+<p>El mercado del cliente. Pop-A-Lock abre con un H1 que es puro trust: <em>«You deserve a locksmith you can trust. And over 1 million customers agree»</em>, más «Licensed, Insured &amp; ALOA Certified» y sección de testimonios. All American pone el <strong>tiempo de llegada en el title</strong> («20-25 Mins»), un H2 titulado <strong>«200+ Verified Google Reviews»</strong>, precios honestos declarados, certificaciones, FAQ y galería de trabajos. Los dos usan <code>LocalBusiness</code>/<code>Locksmith</code>.</p>
+
+<h2 id="s6">6 · Patrones globales detectados</h2>
+<div class="tablebox"><table>
+<tr><th>Patrón</th><th>Vigo</th><th>BCN</th><th>ES</th><th>París</th><th>Orlando</th><th>Lectura</th></tr>
+<tr><td>Teléfono en el title</td><td>3 de 6</td><td class="yes">Sí</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td>Práctica ibérica; sube CTR en móvil</td></tr>
+<tr><td>Precio "desde" en title/H2</td><td class="no">No</td><td class="yes">Sí</td><td class="no">No</td><td class="yes">Sí</td><td class="yes">Sí</td><td><strong>Hueco en Vigo</strong></td></tr>
+<tr><td>Tiempo de llegada visible</td><td class="part">1 de 6</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td><td><strong>Hueco en Vigo</strong></td></tr>
+<tr><td>FAQ visible (no solo schema)</td><td class="no">0 de 6</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td><td><strong>Hueco total</strong></td></tr>
+<tr><td>Reseñas/testimonios en portada</td><td class="part">1 de 6</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td><td><strong>Hueco en Vigo</strong></td></tr>
+<tr><td>Páginas por zona/municipio</td><td class="yes">Sí (Varela)</td><td class="yes">Sí</td><td class="part">Parcial</td><td class="yes">Sí</td><td class="yes">Sí</td><td>Patrón universal: replicar</td></tr>
+<tr><td>Schema LocalBusiness/Locksmith</td><td>2 de 6</td><td class="part">1 de 2</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td><td>Obligatorio, mal cubierto en Vigo</td></tr>
+<tr><td>Certificaciones / sellos</td><td class="part">1 (Berma)</td><td class="no">No</td><td class="no">No</td><td class="yes">Sí</td><td class="yes">Sí</td><td>Diferenciador anglosajón</td></tr>
+<tr><td>Galería de trabajos reales</td><td class="part">Parcial</td><td class="no">No</td><td class="no">No</td><td class="part">Parcial</td><td class="yes">Sí</td><td>Sube confianza sin reseñas</td></tr>
+<tr><td>H2 desde el dolor del cliente</td><td class="part">1 (Novoa)</td><td class="no">No</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td><td>Mejor patrón de copy detectado</td></tr>
+</table></div>
+
+<h2 id="s7">7 · Huecos y oportunidades para La Clave</h2>
+<div class="tiles">
+  <div class="tile good"><div class="big">0/6</div><div class="lbl">webs de Vigo con FAQ visible</div></div>
+  <div class="tile good"><div class="big">0/6</div><div class="lbl">con tabla de precios abierta</div></div>
+  <div class="tile good"><div class="big">1/6</div><div class="lbl">muestra reseñas en portada</div></div>
+  <div class="tile warn"><div class="big">708</div><div class="lbl">palabras del rival más flojo del top-10</div></div>
+</div>
+
+<div class="card win">
+<h3 style="margin-top:0">Las cinco palancas, por orden de retorno</h3>
+<ol>
+<li><strong>Tabla de precios pública.</strong> «Cuánto cuesta un cerrajero» tiene 480 búsq./mes y solo Novoa la ataca — con un post de blog, no con tarifas propias. Publicar los precios reales del cliente (apertura desde 100 €, bombín 130 €…) con la justificación «sin romper + 1 año de garantía» copia el patrón de Barcelona y París, y neutraliza la búsqueda «barato».</li>
+<li><strong>Especialización en coche.</strong> El cliente trae 1.400 llaves de coche y 775 aperturas de vehículo de Orlando. Placer ya monetiza esto con su menú por marcas — es la prueba de que el nicho paga. Una sección <code>/llaves-de-coche/</code> con página por marca es la vía más rápida de cola larga.</li>
+<li><strong>Prueba social importada.</strong> Con 0 reseñas locales, el patrón Orlando (H2 «200+ Verified Google Reviews») se traduce en: <em>«4.853 reseñas y 4,7★ avalando nuestro trabajo en Estados Unidos»</em>, con enlace verificable a la ficha de Prolocksmith. Ningún competidor de Vigo puede replicarlo.</li>
+<li><strong>Bloque FAQ visible + <code>FAQPage</code>.</strong> Hueco absoluto en Vigo, estándar en los otros cinco mercados.</li>
+<li><strong>Tiempo de llegada en el title.</strong> «15 minutos» declarado por el cliente, patrón validado en Orlando («20-25 Mins») y París («en 20 min»). Nadie en Vigo lo usa en el title.</li>
+</ol>
+</div>
+
+<h2 id="s8">8 · Estructura ideal de la home</h2>
+<div class="tablebox"><table>
+<tr><th class="num">#</th><th>Sección</th><th>Contenido</th><th>Patrón de origen</th></tr>
+<tr><td class="num">1</td><td>Header fijo</td><td>Logo · menú · teléfono clicable · botón «Llamar ahora» · WhatsApp</td><td>Sandoval (36 tel), Miranda (6 WA)</td></tr>
+<tr><td class="num">2</td><td>Hero</td><td>H1 «Cerrajero en Vigo 24 horas» · «Llegamos en 15 minutos» · 4,7★ / 4.853 reseñas en EE. UU. · doble CTA</td><td>All American + Pop-A-Lock</td></tr>
+<tr><td class="num">3</td><td>Dolor</td><td>3 bloques: «Me he quedado fuera» · «Me han forzado la cerradura» · «He perdido la llave del coche»</td><td>Novoa (mejor copy de Vigo)</td></tr>
+<tr><td class="num">4</td><td>Servicios</td><td>9 tarjetas con precio «desde» y enlace a su página</td><td>Universal</td></tr>
+<tr><td class="num">5</td><td><strong>Tarifas</strong></td><td>Tabla abierta con todos los precios + qué incluye + garantía 1 año</td><td>París + Barcelona <span class="pill p3">hueco</span></td></tr>
+<tr><td class="num">6</td><td>Coche</td><td>Bloque dedicado: llaves con chip, push-to-start, mandos, apertura sin daños</td><td>Placer (menú por marcas)</td></tr>
+<tr><td class="num">7</td><td>Por qué nosotros</td><td>Formación en EE. UU. · 3.500 trabajos · atendemos en inglés · sin romper · factura</td><td>Pop-A-Lock</td></tr>
+<tr><td class="num">8</td><td>Proceso</td><td>Llamas → precio cerrado por teléfono → llegamos en 15 min</td><td>Novoa</td></tr>
+<tr><td class="num">9</td><td>Zonas</td><td>Enlaces a barrios y municipios atendidos</td><td>Varela + Barcelona</td></tr>
+<tr><td class="num">10</td><td>Prueba</td><td>Reseñas Orlando + galería antes/después + primeras reseñas locales</td><td>All American <span class="pill p3">hueco</span></td></tr>
+<tr><td class="num">11</td><td><strong>FAQ</strong></td><td>8-10 preguntas + schema FAQPage</td><td>Todos menos Vigo <span class="pill p3">hueco</span></td></tr>
+<tr><td class="num">12</td><td>CTA final + footer</td><td>Teléfono grande · mapa · NAP · servicios · zonas · legal</td><td>Universal</td></tr>
+</table></div>
+
+<h2 id="s9">9 · Menú recomendado</h2>
+<div class="tablebox"><table>
+<tr><th class="num">#</th><th>Entrada</th><th>Submenú</th></tr>
+<tr><td class="num">1</td><td>Servicios</td><td>Apertura de puertas · Cambio de cerradura · Bombines · Cerraduras de seguridad · Cajas fuertes · Amaestramiento · Cerraduras inteligentes</td></tr>
+<tr><td class="num">2</td><td><strong>Llaves de coche</strong></td><td>Duplicado con chip · Mandos · Push-to-start · Apertura de vehículos · <em>por marca</em></td></tr>
+<tr><td class="num">3</td><td>Precios</td><td>— (página propia, sin desplegable)</td></tr>
+<tr><td class="num">4</td><td>Zonas</td><td>Calvario · Teis · Navia · Coia · Bouzas · Castrelos · Lavadores · + municipios</td></tr>
+<tr><td class="num">5</td><td>Sobre nosotros</td><td>Historia Orlando + garantía</td></tr>
+<tr><td class="num">6</td><td>Contacto</td><td>—</td></tr>
+<tr><td class="num">7</td><td><strong>Botón: Llamar 24 h</strong></td><td>Destacado en color de marca</td></tr>
+</table></div>
+<p><em>Nota:</em> el estudio de keywords mostró <strong>0 búsquedas registradas</strong> para los barrios de Vigo («cerrajero navia vigo», «calvario», «teis»…). Las páginas de zona se construyen por <strong>cobertura y enlazado interno</strong>, no esperando volumen directo — igual que hacen Varela y los de Barcelona.</p>
+
+<h2 id="s10">10 · Servicios a destacar</h2>
+<ul>
+<li><strong>Principal:</strong> apertura de puertas de urgencia 24 h (sin romper).</li>
+<li><strong>Diferencial:</strong> llaves de coche —chip, remoto, push-to-start— y apertura de vehículos. <em>Es donde el cliente tiene 2.175 trabajos de experiencia real.</em></li>
+<li><strong>Alta intención:</strong> cambio de cerradura tras robo o pérdida de llaves · cambio de bombín.</li>
+<li><strong>Especializados:</strong> cerraduras antibumping, cajas fuertes, cerraduras inteligentes.</li>
+<li><strong>B2B (hueco detectado a nivel nacional):</strong> comunidades de vecinos y amaestramiento — el cliente ya lo ofrece a 79 €, y Sandoval demuestra que tracciona.</li>
+</ul>
+
+<h2 id="s11">11 · SEO on-page concreto</h2>
+<pre>Title    Cerrajero en Vigo 24 Horas | Llegamos en 15 min ☎ [teléfono]
+Meta     📞 [teléfono] Cerrajero urgente en Vigo 24h. Apertura sin romper desde 100 €,
+         1 año de garantía. Formados en EE. UU. Llegamos en 15 minutos.
+H1       Cerrajero en Vigo 24 horas
+H2       Apertura de puertas urgente en Vigo
+H2       Llaves y mandos de coche en Vigo
+H2       Precios de cerrajero en Vigo: tarifas claras
+H2       Zonas de Vigo donde trabajamos
+H2       Preguntas frecuentes sobre cerrajería en Vigo</pre>
+<p><strong>Extensión:</strong> 1.400-2.200 palabras en portada (mediana del top de Vigo: 1.250; el líder de Barcelona: 4.554). <strong>Imágenes:</strong> 25-40 propias con alt descriptivo — Placer marca el listón con 74 alts sobre 77 imágenes. <strong>Schema obligatorio:</strong> <code>Locksmith</code> (subtipo de LocalBusiness), <code>Service</code> por cada servicio, <code>FAQPage</code>, <code>BreadcrumbList</code>. Sin <code>AggregateRating</code> hasta tener reseñas locales reales.</p>
+
+<h2 id="s12">12 · Arquitectura de URLs</h2>
+<pre>/                                  Home — cerrajero Vigo 24h
+/servicios/apertura-de-puertas/
+/servicios/cambio-de-cerradura/
+/servicios/cambio-de-bombin/
+/servicios/cerraduras-seguridad/
+/servicios/cajas-fuertes/
+/servicios/amaestramiento/
+/servicios/cerraduras-inteligentes/
+/llaves-de-coche/                  ← hub del nicho diferencial
+/llaves-de-coche/[marca]/          ← cola larga (patrón Placer)
+/llaves-de-coche/apertura-vehiculos/
+/precios/                          ← hueco de mercado
+/zonas/[barrio]/                   Calvario, Teis, Navia, Coia, Bouzas…
+/zonas/[municipio]/                Mos, O Porriño, Redondela, Nigrán…
+/sobre-nosotros/                   Historia Orlando + garantía
+/contacto/
+/blog/</pre>
+
+<h2 id="s13">13 · Plan 30 / 60 / 90 días</h2>
+<div class="card">
+<h4>Días 1-30 — Existir y convertir</h4>
+<ul>
+<li>Rótulo instalado (bloquea la verificación de la ficha) · logo · fotos del cliente, coche rotulado y trabajos.</li>
+<li>Ficha GBP «Cerrajería La Clave de Vigo» con horario 24 h real, categoría Cerrajero + Servicio de duplicación de llaves, y <strong>teléfono nuevo exclusivo de Vigo</strong>.</li>
+<li>Home completa con las 12 secciones + <code>/precios/</code> + <code>/llaves-de-coche/</code> + <code>/sobre-nosotros/</code> + legal.</li>
+<li>Schema Locksmith + FAQPage + Breadcrumb. Sitemap y Search Console.</li>
+<li>Primeras 10 reseñas locales (todo cliente atendido, con QR en la furgoneta).</li>
+</ul>
+</div>
+<div class="card">
+<h4>Días 31-60 — Cubrir el mapa</h4>
+<ul>
+<li>7 páginas de servicio + 8 páginas de zona (barrios) con contenido diferenciado.</li>
+<li>Primeras páginas por marca de coche (las 6 más vendidas en Galicia).</li>
+<li>Enlazado interno servicio ↔ zona ↔ coche. Citaciones NAP con el número nuevo.</li>
+<li>Post «Cuánto cuesta un cerrajero en Vigo» — hueco de 480 búsq./mes.</li>
+</ul>
+</div>
+<div class="card">
+<h4>Días 61-90 — Adelantar</h4>
+<ul>
+<li>Páginas de municipio (Mos, Porriño, Redondela, Nigrán) — patrón Varela.</li>
+<li>Nicho B2B: comunidades de vecinos y amaestramiento (patrón Sandoval).</li>
+<li>Galería de trabajos reales acumulados + primeras reseñas locales en portada.</li>
+<li>Geo-grid sobre la ficha para medir el radio real y ajustar.</li>
+</ul>
+</div>
+
+<h2 id="s14">14 · Conclusión estratégica</h2>
+<p>La ubicación de Padre Sarmiento es competitivamente dura: 23 fichas y 1.811 reseñas en 2 km. Pero <strong>el nivel de las webs que rankean en Vigo es bajo</strong>: se entra al top-10 con 708-1.058 palabras (Varela, Gali), ninguna publica precios, ninguna muestra FAQ y solo una enseña reseñas. Lo que en Barcelona, París u Orlando es estándar, en Vigo no lo hace nadie.</p>
+<p>La estrategia se sostiene en tres pilares que ningún rival local puede copiar rápido: <strong>transparencia de precios</strong> (neutraliza «barato» y captura «cuánto cuesta»), <strong>especialización en coche</strong> (2.175 trabajos reales frente a un mercado que solo cubre Placer), y <strong>autoridad importada</strong> (4.853 reseñas verificables de Orlando mientras se construyen las locales). Sobre eso, el 24 h real —con la mitad del anillo inmediato figurando cerrado de noche— es la palanca de captación diaria.</p>
+<p><strong>El orden importa:</strong> sin rótulo no hay ficha, sin ficha no hay pack, y sin pack la web rinde a la mitad. Primero el rótulo y el alta; después la web con este plano.</p>
+
+<p class="foot"><strong>Método.</strong> Búsquedas realizadas el 29-jul-2026 en google.es, google.fr y google.com con <code>pws=0</code>. Se descartaron anuncios, Google Maps, directorios (paxinasgalegas, habitissimo, milanuncios, páginas amarillas, HomeServe, Yelp, threebestrated, europages, travaux.com), redes sociales y agregadores. Los 13 competidores válidos se visitaron y se extrajeron title, meta, encadenado de headings, menú, número de imágenes y alts, JSON-LD, enlaces tel/WhatsApp, formularios, extensión y presencia de precios, FAQ, reseñas, tiempo de llegada, garantía y certificaciones. Datos de demanda: DinoRANK (jun-2026) y Google Keyword Planner segmentado a Vigo (725 keywords, jul-2025→jun-2026). Censo de fichas: elaboración propia sobre Google Maps (45 fichas, 12-jul-2026). Cuando un dato no pudo verificarse en el HTML servido, se marcó como parcial en lugar de inferirlo.</p>
+
+</div>
+</body>
+</html>
